@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 40px;
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 40px;
+        overflow-x: auto;
+        scroll-padding: 20px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .service-section {
+        margin-top: 60px;
+      }
+
+      .service-title-section {
+        margin-bottom: 24px;
+        padding: 0 20px;
+      }
+
+      .service-title {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+
+      .service-description {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 8px 0;
+      }
+
+      .cards-wrapper,
+      .passage-cards-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 24px;
+        padding: 20px 0;
+        min-width: min-content;
+      }
+
+      .card,
+      .passage-card {
+        background: white;
+        border-radius: 16px;
+        padding: 32px;
+        width: 280px;
+        flex-shrink: 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .plan-name {
+        color: #666;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+
+      .original-price {
+        color: #999;
+        font-size: 16px;
+        text-decoration: line-through;
+        margin-bottom: 8px;
+        font-weight: 400;
+      }
+
+      .price {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+      }
+
+      .free-price {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: #4caf50;
+      }
+
+      .custom-price {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: #2196f3;
+      }
+
+      .price-suffix {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 8px;
+        font-weight: 400;
+      }
+
+      .price-detail {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 24px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 16px;
+        color: #444;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .feature-item:before {
+        content: "✓";
+        display: inline-block;
+        min-width: 20px;
+        height: 20px;
+        background: #f0f0f0;
+        border-radius: 50%;
+        margin-right: 12px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+        color: #666;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .promo-tag {
+        display: inline-block;
+        background: #ffe4e4;
+        color: #ff4444;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+
+      .coming-soon {
+        display: inline-block;
+        background: #e8f4fd;
+        color: #2196f3;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-left: 6px;
+        font-weight: 500;
+      }
+
+      .passage-section {
+        margin-top: 60px;
+      }
+
+      .passage-title-section {
+        margin-bottom: 24px;
+        padding: 0 20px;
+      }
+
+      .passage-title {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+
+      .passage-description {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .container::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      .container::-webkit-scrollbar-thumb {
+        background: #ddd;
+        border-radius: 4px;
+      }
+
+      .container::-webkit-scrollbar-thumb:hover {
+        background: #ccc;
+      }
+
+      .toggle-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 32px;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .toggle-button {
+        background: #f5f5f5;
+        border-radius: 32px;
+        padding: 4px;
+        display: flex;
+        position: relative;
+        cursor: pointer;
+        border: 1px solid #ddd;
+      }
+
+      .toggle-option {
+        padding: 8px 24px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #666;
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s ease;
+      }
+
+      .toggle-option.active {
+        color: #2196f3;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: calc(50% - 4px);
+        height: calc(100% - 8px);
+        background: white;
+        border-radius: 28px;
+        transition: transform 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .toggle-slider.yearly {
+        transform: translateX(100%);
+      }
+
+      .vat-notice {
+        text-align: left;
+        color: #666;
+        font-size: 13px;
+        margin-top: 8px;
+      }
+
+      .discount-tag {
+        display: inline-block;
+        background: #e3f2fd;
+        color: #2196f3;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-left: 8px;
+        font-weight: 500;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="service-section">
+        <div class="service-title-section">
+          <h2 class="service-title">구독 요금제</h2>
+          <p class="service-description">
+            큐파일럿과 함께, 문항 퀄리티를 유지하면서도 제작 시간을 반으로 줄여 보세요.
+          </p>
+          <p class="service-description">
+            플랜에 따라 매달 새로 등록할 수 있는 최대 문항 개수가 늘어납니다.
+          </p>
+          <div class="vat-notice">* VAT 별도</div>
+        </div>
+
+        <div class="toggle-wrapper">
+          <div class="toggle-button">
+            <div class="toggle-option active">월간</div>
+            <div class="toggle-option">연간</div>
+            <div class="toggle-slider"></div>
+          </div>
+        </div>
+
+        <div class="cards-wrapper">
+          <div class="card"></div>
+            <h2 class="plan-name">Free Plan</h2>
+            <div class="promo-tag">11월까지 특별가</div>
+
+            <div class="original-price monthly">40만원</div>
+            <div class="price monthly">
+              35만원
+              <span class="discount-tag">-5만원</span>
+              <span class="price-discount-tag hidden">-5만원</span>
+            </div>
+
+            <div class="original-price yearly hidden">40만원</div>
+            <div class="price yearly hidden">
+              29만원
+              <span class="discount-tag">-11만원</span>
+              <span class="price-discount-tag hidden">-11만원</span>
+            </div>
+
+            <div class="price-suffix">매달 청구</div>
+            <div class="price-detail">
+              매달 100문항 등록 가능<br />추가 문항당 2,900원
+            </div>
+            <ul class="feature-list">
+              <li class="feature-item">지문 난이도 조절</li>
+              <li class="feature-item">출제 포인트 추천</li>
+              <li class="feature-item">선지 생성 (문항 당 50개)</li>
+              <li class="feature-item">해설 생성</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2 class="plan-name">Basic Plan</h2>
+            <div class="promo-tag">11월까지 특별가</div>
+
+            <div class="original-price monthly">40만원</div>
+            <div class="price monthly">
+              35만원
+              <span class="discount-tag">-5만원</span>
+              <span class="price-discount-tag hidden">-5만원</span>
+            </div>
+
+            <div class="original-price yearly hidden">40만원</div>
+            <div class="price yearly hidden">
+              29만원
+              <span class="discount-tag">-11만원</span>
+              <span class="price-discount-tag hidden">-11만원</span>
+            </div>
+
+            <div class="price-suffix">매달 청구</div>
+            <div class="price-detail">
+              매달 100문항 등록 가능<br />추가 문항당 2,900원
+            </div>
+            <ul class="feature-list">
+              <li class="feature-item">지문 난이도 조절</li>
+              <li class="feature-item">출제 포인트 추천</li>
+              <li class="feature-item">선지 생성 (문항 당 50개)</li>
+              <li class="feature-item">해설 생성</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2 class="plan-name">Enterprise Plan</h2>
+            <div class="promo-tag">11월까지 특별가</div>
+
+            <div class="original-price monthly">155만원</div>
+            <div class="price monthly">
+              145만원
+              <span class="discount-tag">-10만원</span>
+              <span class="price-discount-tag hidden">-10만원</span>
+            </div>
+
+            <div class="original-price yearly hidden">155만원</div>
+            <div class="price yearly hidden">
+              129만원
+              <span class="discount-tag">-26만원</span>
+              <span class="price-discount-tag hidden">-16만원</span>
+            </div>
+
+            <div class="price-suffix">매달 청구</div>
+            <div class="price-detail">
+              매달 500문항 등록 가능<br />추가 문항당 2,900원
+            </div>
+            <ul class="feature-list">
+              <li class="feature-item">Basic의 모든 기능 포함</li>
+              <li class="feature-item">선지 생성 (문항 당 100개)</li>
+              <li class="feature-item">
+                다중 계정 로그인<span class="coming-soon">예정</span>
+              </li>
+              <li class="feature-item">
+                직원별 AI 활용도 분석<span class="coming-soon">예정</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2 class="plan-name">
+              Custom Plan<span class="coming-soon">출시 예정</span>
+            </h2>
+            <div class="custom-price">문의</div>
+            <div class="price-detail">필요한 기능에 따라 맞춤 요금 제공</div>
+            <ul class="feature-list">
+              <li class="feature-item">커스텀 지문 DB 구축</li>
+              <li class="feature-item">커스텀 해설 모델 제공</li>
+              <li class="feature-item">커스텀 유형 제공</li>
+              <li class="feature-item">API 제공</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="passage-section">
+        <div class="passage-title-section">
+          <h2 class="passage-title">지문 구매</h2>
+          <p class="passage-description">
+            해외 원서에서 발췌한 지문을 사용해 문항을 등록하실 수 있습니다.
+          </p>
+        </div>
+
+        <div class="passage-cards-wrapper">
+          <div class="passage-card">
+            <h3 class="plan-name">선별 지문</h3>
+            <div class="promo-tag">11월까지 특별가</div>
+            <div class="original-price">9만원</div>
+            <div class="price">6만원</div>
+            <div class="price-suffix">10지문 단위 구매</div>
+            <div class="price-detail">해외 원서에서 발췌한 지문</div>
+            <ul class="feature-list">
+              <li class="feature-item">엄선된 PDF 지문 제공</li>
+              <li class="feature-item">
+                난이도 예측<span class="coming-soon">예정</span>
+              </li>
+              <li class="feature-item">
+                주제별 카테고리<span class="coming-soon">예정</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="passage-card">
+            <h3 class="plan-name">
+              PDF 지정<span class="coming-soon">출시 예정</span>
+            </h3>
+            <div class="price">12,000원</div>
+            <div class="price-suffix">지문 당</div>
+            <div class="price-detail">업로드한 PDF에서 발췌</div>
+            <ul class="feature-list">
+              <li class="feature-item">원하는 PDF 사용</li>
+              <li class="feature-item">발췌할 지문 개수 지정 가능</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelector(".toggle-button").addEventListener("click", function () {
+        // Toggle button state
+        this.querySelector(".toggle-slider").classList.toggle("yearly");
+        this.querySelectorAll(".toggle-option").forEach((opt) => {
+          opt.classList.toggle("active");
+        });
+
+        // Determine if yearly plan is selected
+        const isYearly = this.querySelector(".toggle-slider").classList.contains("yearly");
+
+        // Toggle visibility of monthly and yearly prices
+        document.querySelectorAll(".monthly, .yearly").forEach((el) => {
+          el.classList.toggle("hidden");
+        });
+
+        // Update price suffix
+        document.querySelectorAll(".price-suffix").forEach((el) => {
+          if (el.closest('.passage-card')) {
+            // Do not change price suffix for passage cards
+            return;
+          }
+          el.textContent = isYearly ? "월 환산" : "매달 청구";
+        });
+      });
+    </script>
+  </body>
+</html>
